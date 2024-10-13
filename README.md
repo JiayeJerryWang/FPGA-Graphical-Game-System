@@ -26,10 +26,6 @@ Key components include:
 
 ### Installation Steps
 1. **Clone the Repository**:
-   ```bash
-   git clone <repository-url>
-   cd graphical-game-system-fpga
-   ```
 2. **Open the Project in Quartus Prime**:
    - Launch **Quartus Prime** and open the project files.
    - Compile the System Verilog design for the Pac-Man game and GPU.
