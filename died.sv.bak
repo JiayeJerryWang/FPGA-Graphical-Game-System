@@ -1,0 +1,26 @@
+module FSM (input reset, clk, key, PacmanX, PacmanY, GhostX, GhostY, GhostXG, GhostYG, GhostXP, GhostYP,
+				output died);
+
+
+	always_comb begin
+		if((PacmanX == GhostX) && (PacmanY== GhostY))
+			begin
+			died <= 1'b1;
+			end
+		
+		else if((PacmanX == GhostXG) && (PacmanY== GhostYG))
+			begin
+			died <= 1'b1;
+			end
+		
+		else if((PacmanX == GhostXP) && (PacmanY== GhostYP))
+			begin
+			died <= 1'b1;
+			end
+		
+		else 
+			
+			died <= 1'b0;
+			end
+	
+endmodule

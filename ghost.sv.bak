@@ -1,0 +1,5 @@
+module ghost ( input Reset, frame_clk, Over,
+					output [9:0]  Xmotion,Ymotion,
+               output [9:0]  BallX, BallY, BallS );
+
+endmodule

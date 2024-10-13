@@ -1,0 +1,89 @@
+module FSM(input reset, clk, key, PacmanX, PacmanY, GhostX, GhostY, Ghost1X, Ghost1Y, is_dot,
+				output died, resetgame, startgame, endgame, drawpacman,drawghost, drawghost1);
+	
+	enum logic [2:0] { newgame,win } nextstate, currentstate;
+	
+	assign nextstate=currentstate;
+	always_ff @ (posedge clk) begin
+		if (reset) begin
+			currentstate <= newgame;
+			resetgame <= 1'b1;
+		end 
+		
+		else begin
+			currentstate <= nextstate;
+		end
+	end
+	
+	
+	always_comb begin	
+		if((PacmanX == GhostX) && (PacmanY== GhostY))
+			begin
+			died <= 1'b1;
+			end
+		
+		else if((PacmanX == Ghost1X) && (PacmanY== Ghost1Y))
+			begin
+			died <= 1'b1;
+			end
+
+		else 	
+			died <= 1'b0;
+	end
+
+	
+	
+	always_comb begin
+		nextstate <= currentstate;
+		if (died)begin
+		nextstate<=newgame;
+		resetgame <= 1'b0;
+		endgame <= 1'b1;
+		end
+	
+	else begin
+		case (currentstate)
+		newgame: begin	
+			if(is_dot)begin 
+				nextstate =newgame;
+				resetgame = 1'b0;
+			end
+			
+			else begin
+				nextstate = win;
+				resetgame = 1'b1;
+			end
+		end
+		
+		win: begin
+			resetgame = 1'b0;
+			if(reset)
+				nextstate=newgame;
+			else
+				nextstate=win;
+			end
+		
+		endcase
+	end
+end
+	always_comb begin
+		case(currentstate)
+			newgame: begin
+				startgame= 1'b1;
+				endgame= 1'b0;
+				drawpacman= 1'b1;
+				drawghost= 1'b1;
+				drawghost1= 1'b1;
+			end
+			win: begin
+				startgame= 1'b0;
+				endgame= 1'b1;
+				drawpacman= 1'b0;
+				drawghost= 1'b0;
+				drawghost1= 1'b0;
+			end
+		endcase
+	end
+
+	
+endmodule

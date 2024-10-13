@@ -1,0 +1,36 @@
+module ValidMoveUp (input [9:0]  BallX, BallY,
+						input [9:0], 
+						output Up);
+	 logic [9:0] wall_addr;
+	 logic [639:0] wall_data;
+	 logic Up1,Up2,Up3,Up4,Up5,Up6,Up7,Up8,Up9,Up10,Up11,Up12,Up13,Up14,Up15,Up16;
+	 wall_addr = Ball_Y_Pos-1;
+	 up1 = wall_data[BallX];
+	 up2 = wall_data[BallX+1];
+	 up3 = wall_data[BallX+2];
+	 up4 = wall_data[BallX+3];
+	 up5 = wall_data[BallX+4];
+	 up6 = wall_data[BallX+5];
+	 up7 = wall_data[BallX+6];
+	 up8 = wall_data[BallX+7];
+	 up9 = wall_data[BallX+8];
+	 up10 = wall_data[BallX+9];
+	 up11 = wall_data[BallX+10];
+	 up12 = wall_data[BallX+11];
+	 up13 = wall_data[BallX+12];
+	 up14 = wall_data[BallX+13];
+	 up15 = wall_data[BallX+14];
+	 up16 = wall_data[BallX+15];
+always_comb
+	begin
+	 if ( Up1 || Up2 || Up3 || Up4 || Up5|| Up6 || Up7 || Up8 || Up9 || Up10 || Up11|| Up12 || Up13 || Up14 || Up15 ||Up16) 
+		begin
+			up = 1;
+		end
+	else
+		begin
+			up = 0;
+		end
+	end
+	 wall_rom wall(.addr(wall_addr), .data(wall_data));
+endmodule

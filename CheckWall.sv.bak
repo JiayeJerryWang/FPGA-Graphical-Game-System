@@ -1,0 +1,25 @@
+module CheckWall (input [9:0]  DrawX, DrawY,	
+							output logic wall_on
+						);
+	logic [5:0] wall_addr;
+	logic [39:0] wall_data;
+	wall_rom wall(.addr(wall_addr),.data(wall_data));
+	always_comb 
+		begin
+			wall_addr = DrawY[9:4];
+			begin
+				case(DrawX[9:4])
+					6'b000000    :    wall_on = wall_data[0];
+					6'b000001    :    wall_on = wall_data[1];
+					6'b000010    :    wall_on = wall_data[2];
+					6'b000011    :    wall_on = wall_data[3];
+					6'b000100    :    wall_on = wall_data[4];
+					6'b000101    :    wall_on = wall_data[5];
+					6'b000110    :    wall_on = wall_data[6];
+					6'b000111    :    wall_on = wall_data[7];
+					...
+				endcase
+			end
+		end
+endmodule
+						

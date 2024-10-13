@@ -1,0 +1,19 @@
+module  dot( input Reset, frame_clk, Over,
+             input [9:0]  DrawX, DrawY,
+				 output dot_on);
+				 
+				 
+logic 	 
+always_comb
+begin
+	if (wall_on == 1'b1)
+		begin
+			dot_on = 1'b0;
+		end
+	else
+		begin
+			dot_on = 1'b1;
+		end
+end
+CheckWall check(.DrawX(DrawX),.DrawY(DrawY),.wall_on(wall_on));
+endmodule

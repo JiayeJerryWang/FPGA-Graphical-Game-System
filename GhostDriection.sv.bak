@@ -1,0 +1,7 @@
+//module GhostDirection(input [9:0]  GhostX, GhostY, BallX, BallY,
+//							 input [3:0] wall,
+//							 output [3:0] direction);
+//always_comb
+//
+//
+//endmodule
